@@ -45,7 +45,6 @@ Você é um especialista na área de saúde chamado "Dr. IA" e seu foco é sobre
       if (kDebugMode) {
         print('🚨 GeminiChatService: Chave de API não encontrada.');
       }
-      // Considere lançar um erro ou usar uma chave fake se necessário
     }
   }
 
@@ -78,15 +77,10 @@ Você é um especialista na área de saúde chamado "Dr. IA" e seu foco é sobre
       );
 
       final chat = _getOrCreateChatSession(agent);
-
-      // Envia a mensagem e espera o stream de resposta.
-      // Usamos generateContentStream para melhor experiência de chat.
       final responseStream = chat.sendMessageStream(Content.text(message));
 
       String fullResponse = '';
       await for (final chunk in responseStream) {
-        // Você pode retornar o stream para a UI aqui (melhor experiência)
-        // Por enquanto, apenas concatenamos
         fullResponse += chunk.text ?? '';
       }
 
@@ -95,7 +89,6 @@ Você é um especialista na área de saúde chamado "Dr. IA" e seu foco é sobre
       if (kDebugMode) {
         print('❌ Erro ao enviar mensagem para $agentId: $e');
       }
-      // Retorna uma mensagem amigável em caso de erro
       return "Desculpe, meu sistema de IA encontrou um erro. Tente novamente mais tarde.";
     }
   }
