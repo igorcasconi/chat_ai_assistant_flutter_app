@@ -63,7 +63,7 @@ Você é um especialista na área de saúde chamado "Dr. IA" e seu foco é sobre
     _activeChats[agent.id] = newChat;
 
     if (kDebugMode) {
-      print('✅ Nova sessão de chat iniciada para: ${agent.title}');
+      print('Nova sessão de chat iniciada para: ${agent.title}');
     }
 
     return newChat;
@@ -72,7 +72,7 @@ Você é um especialista na área de saúde chamado "Dr. IA" e seu foco é sobre
   Future<String> sendMessage(String agentId, String message) async {
     try {
       final agent = availableAgents.firstWhere(
-        (a) => a.id == agentId,
+        (availableAgent) => availableAgent.id == agentId,
         orElse: () => throw Exception('Agente não encontrado: $agentId'),
       );
 
@@ -85,9 +85,9 @@ Você é um especialista na área de saúde chamado "Dr. IA" e seu foco é sobre
       }
 
       return fullResponse.trim();
-    } catch (e) {
+    } catch (error) {
       if (kDebugMode) {
-        print('❌ Erro ao enviar mensagem para $agentId: $e');
+        print('Erro ao enviar mensagem para $agentId: $error');
       }
       return "Desculpe, meu sistema de IA encontrou um erro. Tente novamente mais tarde.";
     }
